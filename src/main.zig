@@ -15,7 +15,9 @@ pub fn main(init: std.process.Init) !void {
     defer log.close(io);
 
     var db: bpt.BPTree = try .init(gpa, io, file, log);
-    defer db.deinit(gpa);
+    defer db.deinit();
+
+    _ = try db.vacuum(.full);
 
     var app: App = .{ .db = &db };
 
