@@ -11,10 +11,16 @@ pub fn main(init: std.process.Init) !void {
 
     const file = try Io.Dir.cwd().createFile(io, "data.db", .{ .read = true, .truncate = false });
     defer file.close(io);
-    const log = try Io.Dir.cwd().createFile(io, "data.db.wal", .{ .read = true, .truncate = false });
-    defer log.close(io);
 
-    var db: bpt.BPTree = try .init(gpa, io, file, log);
+    var logs: [2]Io.File = undefined;
+    for (&logs, 0..) |*log, i| {
+        const log_name = try std.fmt.allocPrint(gpa, "data.db.wal{d}", .{i});
+        defer gpa.free(log_name);
+        log.* = try Io.Dir.cwd().createFile(init.io, log_name, .{ .read = true, .truncate = false });
+    }
+    defer for (logs) |log| log.close(io);
+
+    var db: bpt.BPTree = try .init(gpa, io, file, logs);
     defer db.deinit();
 
     _ = try db.vacuum(.full);
