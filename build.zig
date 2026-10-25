@@ -49,6 +49,7 @@ pub fn build(b: *std.Build) void {
     const bplustree = b.dependency("bplustree_zig", .{
         .target = target,
         .optimize = optimize,
+        .pool_frames = 4096,
     });
 
     // Here we define an executable. An executable needs to have a root module
