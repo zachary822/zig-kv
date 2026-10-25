@@ -37,8 +37,8 @@
             .hash = "httpz-0.0.0-PNVzrNAXCQDHb-rRH2jq07A3Ekv3GS6XOTkiqZJtKeqv",
         },
         .bplustree_zig = .{
-            .url = "git+https://github.com/zachary822/bplustree-zig.git#bf4c5ebdeac028bc4ccb5a4d0bec15fd46dd9629",
-            .hash = "bplustree_zig-0.0.0-i7UXwjFOAwCO68qmtwvRj0NfnvcOdMDGMo6tLyVmHFZL",
+            .url = "git+https://github.com/zachary822/bplustree-zig.git#95bc7e46b5970bef31ec50043404a6ccc5ad0342",
+            .hash = "bplustree_zig-0.0.0-i7UXwr4IAwAOOXnPSYzCakaObgyD6bD_M1k-bMA0OP1Q",
         },
     },
     .paths = .{
